@@ -44,6 +44,8 @@ Run test
 
 * `<path_to_codeception_library> run <configuration_suite> <path_to_test_file>`
 
+* add `--html` at the end of the test to get and html export of the tests
+
 Run test example
 
 * `./vendor/bin/codecept run tests/acceptance/tests/acceptance/ItemCest.php`
