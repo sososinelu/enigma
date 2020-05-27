@@ -6,18 +6,13 @@ namespace Helper;
 // all public methods declared in helper class will be available in $I
 
 use Codeception\Util\Debug;
-use Facebook\WebDriver\Remote\RemoteWebDriver;
 
 class Acceptance extends \Codeception\Module
 {
     public function _failed(\Codeception\TestInterface $test, $fail)
     {
-
         Debug::debug('Closing any browser popups.');
         (new \AcceptanceTester(new \Codeception\Scenario($test)))->closePopup();
-
-        Debug::debug('something went wrong, cleaning sessions.');
-        (new \AcceptanceTester(new \Codeception\Scenario($test)))->clearSession();
     }
 
     /**
@@ -29,5 +24,24 @@ class Acceptance extends \Codeception\Module
     public function getCurrentUrl()
     {
         return $this->getModule('WebDriver')->_getCurrentUri();
+    }
+
+    /**
+     * Helper to delete all cookies
+     */
+    public function deleteAllCookies()
+    {
+        $this->getModule('WebDriver')->webDriver->manage()->deleteAllCookies();
+    }
+
+    /**
+     * Helper to send keystrokes from the keyboard, simulates actual keyboard input
+     *
+     * @param [type] $keys
+     * @return void
+     */
+    public function sendKeys($keys)
+    {
+        $this->getModule('WebDriver')->webDriver->getKeyboard()->sendKeys($keys);
     }
 }

@@ -1,7 +1,5 @@
 <?php
 
-use Helper\Database;
-
 /**
  * Inherited Methods
  * @method void wantToTest($text)
@@ -21,27 +19,6 @@ use Helper\Database;
 class AcceptanceTester extends \Codeception\Actor
 {
     use _generated\AcceptanceTesterActions;
-
-    /**
-     * Clear one or all existing sessions in DB
-     *
-     * @param null $email
-     */
-    public function clearSession($email = null)
-    {
-        $I = $this;
-        $I->closePopup(); // Close any browser popups
-
-        $db = new Database($this->scenario);
-        if (!empty($email)) {
-            $db->clearSession($email);
-        } else {
-            $db->dropSession();
-        }
-
-        $db->removeItemLockedForEditing();
-        $I->wait(0.5);
-    }
 
     /**
      * Close popups

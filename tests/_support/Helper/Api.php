@@ -12,6 +12,6 @@ class Api extends \Codeception\Module
 
     public function _failed(\Codeception\TestInterface $test, $fail)
     {
-        (new \ApiTester(new \Codeception\Scenario($test)))->clearSession();
+
     }
 }

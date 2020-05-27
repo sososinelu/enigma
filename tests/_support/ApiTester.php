@@ -71,19 +71,4 @@ class ApiTester extends \Codeception\Actor
         $I->seeResponseIsJson();
         $this->accessToken = "";
     }
-
-    /**
-     * Clear one or all existing sessions in DB
-     *
-     * @param null $email
-     */
-    public function clearSession($email = null)
-    {
-        $db = new Database($this->scenario);
-        if (!empty($email)) {
-            $db->clearSession($email);
-        } else {
-            $db->dropSession();
-        }
-    }
 }
